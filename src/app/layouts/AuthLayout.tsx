@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Box, Container} from '@mui/material';
+import { Box} from '@mui/material';
 import heroImg from "../../assets/Rectangle 1.png";
 import heroBg from "../../assets/hero-bg.png";
 

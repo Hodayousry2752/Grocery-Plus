@@ -2,10 +2,6 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { authApi } from '../api/auth.api';
 import type {
-  LoginCredentials, 
-  SignUpData, 
-  ForgotPasswordData, 
-  VerifyCodeData, 
   ResetPasswordData 
 } from '../types/auth.types';
 
