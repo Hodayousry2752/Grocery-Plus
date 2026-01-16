@@ -1,6 +1,6 @@
 import {
   Box,
-  dddddddd,
+  Container,
   Typography,
   Button,
   Stack,
@@ -65,7 +65,7 @@ const HotDealsSection = () => {
   const [active, setActive] = useState("Vegetables");
 
   return (
-    <dddddddd maxWidth="lg" sx={{ mb: 10 }}>
+    <Container maxWidth="lg" sx={{ mb: 10 }}>
       {/* Header */}
       <Box
         sx={{
@@ -198,7 +198,7 @@ const HotDealsSection = () => {
           </Card>
         ))}
       </Stack>
-    </dddddddd>
+    </Container>
   );
 };
 
