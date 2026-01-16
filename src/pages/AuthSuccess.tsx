@@ -23,7 +23,7 @@ const AuthSuccess: React.FC = () => {
   const dispatch = useDispatch();
   
   const [showContent, setShowContent] = React.useState(false);
-  const [countdown, setCountdown] = React.useState(5);
+  const [countdown, setCountdown] = React.useState(Math.floor(AUTO_REDIRECT_DELAY / 1000));
 
   useEffect(() => {
     // Clear any auth errors when showing success page
@@ -38,9 +38,25 @@ const AuthSuccess: React.FC = () => {
   }, [dispatch]);
 
   // Get the action type from location state
-  const getActionType = () => {
-    const state = location.state as { action?: keyof typeof SUCCESS_ACTIONS };
-    return state?.action || SUCCESS_ACTIONS.DEFAULT;
+  const getActionType = (): keyof typeof SUCCESS_MESSAGES => {
+    const state = location.state as { action?: string };
+    const action = state?.action;
+    
+    // If action is a key in SUCCESS_ACTIONS (like 'SIGNUP'), convert to value (like 'signup')
+    const actionKey = action?.toUpperCase() as keyof typeof SUCCESS_ACTIONS;
+    
+    if (actionKey && SUCCESS_ACTIONS[actionKey]) {
+      return SUCCESS_ACTIONS[actionKey];
+    }
+    
+    // If action is already a value (like 'signup'), use it directly
+    const actionValues = Object.values(SUCCESS_ACTIONS);
+    if (action && actionValues.includes(action as any)) {
+      return action as keyof typeof SUCCESS_MESSAGES;
+    }
+    
+    // Default fallback
+    return SUCCESS_ACTIONS.DEFAULT;
   };
 
   const actionType = getActionType();

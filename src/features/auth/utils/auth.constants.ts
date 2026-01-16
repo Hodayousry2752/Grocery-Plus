@@ -54,6 +54,8 @@ export const PASSWORD_STRENGTH = {
   STRONG: 'Strong',
 } as const;
 
+export type PasswordStrengthType = keyof typeof PASSWORD_STRENGTH;
+
 export const PASSWORD_STRENGTH_COLORS = {
   [PASSWORD_STRENGTH.NONE]: 'text-gray-500',
   [PASSWORD_STRENGTH.WEAK]: 'text-red-600',
@@ -115,17 +117,23 @@ export const validatePassword = (password: string) => {
   const validCount = Object.values(errors).filter(Boolean).length;
   const total = Object.keys(errors).length;
   
-  let strength = PASSWORD_STRENGTH.NONE;
+  // استخدم type casting لحل المشكلة
+  let strength: string = PASSWORD_STRENGTH.NONE;
+  
   if (validCount > 0) {
-    if (validCount <= 2) strength = PASSWORD_STRENGTH.WEAK;
-    else if (validCount <= 4) strength = PASSWORD_STRENGTH.MEDIUM;
-    else strength = PASSWORD_STRENGTH.STRONG;
+    if (validCount <= 2) {
+      strength = PASSWORD_STRENGTH.WEAK;
+    } else if (validCount <= 4) {
+      strength = PASSWORD_STRENGTH.MEDIUM;
+    } else {
+      strength = PASSWORD_STRENGTH.STRONG;
+    }
   }
   
   return {
     isValid: Object.values(errors).every(Boolean),
     errors,
-    strength,
+    strength: strength as keyof typeof PASSWORD_STRENGTH_COLORS,
     score: validCount / total,
   };
 };

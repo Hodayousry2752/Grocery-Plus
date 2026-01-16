@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authApi } from '../api/auth.api';
-import api from '../../../services/api';
 import type {
   LoginCredentials,
   SignUpData,
@@ -103,13 +102,8 @@ export const useAuth = () => {
   >({
     mutationFn: (data: ResetPasswordData) => {
       const token = localStorage.getItem('resetToken');
-      if (token) {
-        // إذا كان الـ API يحتاج token في الـ headers
-        return api.post('/auth/reset-password', data, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-      }
-      return authApi.resetPassword(data);
+      // استدعاء الدالة المعدلة بمعاملين (data و token)
+      return authApi.resetPassword(data, token || undefined);
     },
     onSuccess: (data) => {
       if (data.success) {

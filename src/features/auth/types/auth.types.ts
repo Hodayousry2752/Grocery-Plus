@@ -35,12 +35,13 @@ export interface ForgotPasswordData {
 
 export interface VerifyCodeData {
   code: string; // أو otp حسب الـ API
+  email?: string; // قد يكون مطلوباً في بعض الحالات
 }
 
 export interface ResetPasswordData {
   newPassword: string;
   confirmPassword: string;
-  token?: string; // أضف إذا كان مطلوبًا
+  // token لم يعد مطلوباً هنا لأنه يُمرر بشكل منفصل
 }
 
 export interface AuthState {

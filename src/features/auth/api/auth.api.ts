@@ -13,7 +13,7 @@ export const authApi = {
   login: (credentials: LoginCredentials): Promise<AuthResponse> =>
     api.post('/auth/login', credentials),
   
-  // التسجيل - استخدم /register بدلاً من /signup
+  // التسجيل
   signup: (data: SignUpData): Promise<AuthResponse> =>
     api.post('/auth/register', data),
   
@@ -29,12 +29,17 @@ export const authApi = {
   }> =>
     api.post('/auth/verify-code', data),
   
-  // إعادة تعيين كلمة المرور
-  resetPassword: (data: ResetPasswordData): Promise<{ 
+  // إعادة تعيين كلمة المرور - تم التعديل لجعل التوكن اختياري
+  resetPassword: (data: ResetPasswordData, token?: string): Promise<{ 
     success: boolean; 
     message: string 
-  }> =>
-    api.post('/auth/reset-password', data),
+  }> => {
+    const headers = token ? { 
+      Authorization: `Bearer ${token}` 
+    } : {};
+    
+    return api.post('/auth/reset-password', data, { headers });
+  },
   
   // تسجيل الخروج
   logout: (): Promise<{ message: string }> => 
