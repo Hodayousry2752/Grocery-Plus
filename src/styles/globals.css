@@ -1,0 +1,20 @@
+/* src/styles/globals.css */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', sans-serif;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #22c55e 0%, #2563eb 100%);
+}
+
+/* أو باستخدام متغيرات CSS */
+:root {
+  --color-green-500: #22c55e;
+  --color-blue-600: #2563eb;
+}
+
+.gradient-bg-2 {
+  background: linear-gradient(135deg, var(--color-green-500) 0%, var(--color-blue-600) 100%);
+}
