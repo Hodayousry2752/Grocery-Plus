@@ -10,6 +10,7 @@ import ResetPassword from '../../pages/ResetPassword';
 import AuthSuccess from '../../pages/AuthSuccess';
 import CategoryPage from '../../features/categories/CategoryPage';
 import ProtectedRoute from '../../components/ProtectedRoute';
+import ShopPage from '../../pages/ShopPage';
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: 'category/:categoryName',
         element: <CategoryPage/>,
+      },
+      {
+        path: '/shop',
+        element: <ShopPage/>,
       },
     ],
   },

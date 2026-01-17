@@ -1,8 +1,10 @@
 import { Box, Button, Typography, Stack } from '@mui/material';
 import { ArrowRight } from 'lucide-react';
 import heroImage from "../../assets/Hreo-img.png";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -42,6 +44,7 @@ const HeroSection = () => {
               Save up to 60% off on your first order
             </Typography>
             <Button
+            onClick={() => navigate("/shop")}
               variant="contained"
               endIcon={<ArrowRight />}
               sx={{

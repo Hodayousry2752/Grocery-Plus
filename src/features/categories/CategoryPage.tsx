@@ -1,5 +1,6 @@
 import CategorySection from "../categories/sections/CategorySections";
 import PromoBanner from "../categories/sections/PromoBanner";
+import CategoryTopBar from "./CategoryTopBar";
 
 const MEATS = [
   {
@@ -47,6 +48,7 @@ const SEAFOOD = [
 export default function CategoryPage() {
   return (
     <div className="container mx-auto px-6 py-10">
+      <CategoryTopBar/>
       <CategorySection title="Meats" products={MEATS} />
       <CategorySection title="Poultry" products={POULTRY} />
       <CategorySection title="Seafood" products={SEAFOOD} />

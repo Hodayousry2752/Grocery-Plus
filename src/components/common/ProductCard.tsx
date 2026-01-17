@@ -18,7 +18,7 @@ const ProductCard = ({
   badges = [],
 }: ProductCardProps) => {
   return (
-    <div className="bg-white rounded-xl border p-4 w-[250px] shrink-0">
+    <div className="bg-white rounded-xl border p-4 w-[200px] shrink-0">
       {/* Badges */}
       <div className="flex gap-2 mb-2">
         {badges.map((badge) => (
